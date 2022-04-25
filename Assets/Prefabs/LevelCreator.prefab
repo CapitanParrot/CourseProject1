@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4720686353781843907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4720686353781843904}
+  - component: {fileID: 4720686353781843905}
+  m_Layer: 0
+  m_Name: LevelCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4720686353781843904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720686353781843907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.750498, y: -4.1786003, z: 0.25104457}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4720686353781843905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720686353781843907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e796dc68ea26b42867f020232a2274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Level: 3
+  xSize: 9
+  ySize: 8
+  xStart: 3
+  yStart: 4
+  RoomSize: 14
+  Room: {fileID: 2178252664529982327, guid: 493f7871e57b8084dbb530d7295e7c6e, type: 3}
+  RoomDecors:
+  - {fileID: 3697122940610145855, guid: fe73315b2eeb8ad4ab70d0e7817aba71, type: 3}
+  Rooms:
+  - {fileID: 5175938243584509209, guid: c40d50f63006c854ebcf011e9aba51ce, type: 3}
+  - {fileID: 986049808478893517, guid: 3903deac0988e574dbdca967c95d59c0, type: 3}
+  - {fileID: 5751141399373756863, guid: 2562ba054c4e08248b1ac0e38fc30863, type: 3}
+  - {fileID: 4578637886325852183, guid: cd3ec32c7a6ae7b4f902e7e775077cd7, type: 3}
+  - {fileID: 6297498483869526298, guid: d787252547e32484192a0c59a70fb04a, type: 3}
+  - {fileID: 741154809277908404, guid: a5a1f9b6ecd9e7f4694c83c58d95888b, type: 3}
+  - {fileID: 7999680259383639700, guid: 368989eb71619bb47b9d2dea2b80bc07, type: 3}
+  - {fileID: 5156047355996670413, guid: 97014d84ce061f846857764acca48070, type: 3}
+  - {fileID: 3243952889496438846, guid: 2d2340a1e2892344586367bd2e890be3, type: 3}
+  - {fileID: 3166926341579699668, guid: 54fb2b9091511e24a861934c249baefe, type: 3}
+  - {fileID: 8943867445129929321, guid: 965fc5e34a918b44eb0c872b4f708fc8, type: 3}
+  - {fileID: 2645852899299449428, guid: a3e0a1816fa3e9d498729dc2a38b4a99, type: 3}
+  - {fileID: 1207433848490876913, guid: 74be7412976264945a5e9c57caac3e6d, type: 3}
+  - {fileID: 3325112351127159870, guid: 7bec9f1282300344987ffa0d0bf02f03, type: 3}
+  - {fileID: 7656984396721524896, guid: 2553b7203df80334fb6aa94ba6e4cd55, type: 3}
+  StartRoomDecor: {fileID: 3697122940610145855, guid: 784f9b468cd511748bd48a4ffc94d6e7, type: 3}
+  BossRoomDecor: {fileID: 3697122940610145855, guid: 4b2d728864aefd548989fbb31745f749, type: 3}
+  SpawnPoint: {fileID: 8259814973852958695, guid: 63490ec3c708db144b55675e734478e1, type: 3}
+  Exit: {fileID: 5448708430098614942, guid: 70537a63383b6954c928365d21533aeb, type: 3}
