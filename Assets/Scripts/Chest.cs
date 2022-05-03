@@ -4,17 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+// Сундук спавнит сокровища, когда его откроют.
 public class Chest : MonoBehaviour
 {
-
     public Animator Animator;
 
     private bool isChestOpen = false;
-
-    void Start()
-    {
-        
-    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -31,13 +26,10 @@ public class Chest : MonoBehaviour
 
     }
 
+    // Спавним сокровище.
     public void GenerateTreasure()
     {
-        Instantiate(ArtifactManager.Instance.GetArtifact(), transform.position, Quaternion.identity);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instantiate(ArtifactManager.Instance.GetArtifact(), transform.position, Quaternion.identity,
+            GameManager.Instance.LevelCreatorInstance.transform);
     }
 }

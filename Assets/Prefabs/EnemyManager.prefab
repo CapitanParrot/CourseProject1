@@ -44,10 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4e87149a690e04f8b7b0ffe2549c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyInRoomCounter: 0
-  Enemies:
+  FirstFloorEnemies:
   - {fileID: 9168509170260662499, guid: 79f227c25b4391b4aab78f37d9de0186, type: 3}
   - {fileID: 5001346997740267623, guid: 8bb05e8c16f807f4da992bdfd4df713a, type: 3}
   - {fileID: 5818935721243073497, guid: 217adaae464c11144b6d4a5b140dcdab, type: 3}
+  SecondFloorEnemies:
+  - {fileID: 7550986762218487373, guid: 85c4126b397688a4780f5b76c0a45d51, type: 3}
+  - {fileID: 5001346997740267623, guid: 8bb05e8c16f807f4da992bdfd4df713a, type: 3}
+  - {fileID: 5818935721243073497, guid: 217adaae464c11144b6d4a5b140dcdab, type: 3}
+  ThirdFloorEnemies:
+  - {fileID: 4505401649807398443, guid: 3fae0eb83f094a549808ec5e2ee5f377, type: 3}
+  - {fileID: 7550986762218487373, guid: 85c4126b397688a4780f5b76c0a45d51, type: 3}
+  - {fileID: 5001346997740267623, guid: 8bb05e8c16f807f4da992bdfd4df713a, type: 3}
   Bosses:
   - {fileID: 5841182864056209766, guid: 1663f9b2a8cde8a46ad3c27d04c4f2d7, type: 3}
+  - {fileID: 3977789825093346578, guid: d8423f9b708483445a014963f8202b2d, type: 3}
+  - {fileID: 7179952085116185113, guid: 8fa7896096566184393595836ae7d70a, type: 3}

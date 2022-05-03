@@ -4,15 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+
+// Генератов планов aka самый сложный класс.
+// Создает абстактную карту для последующей расстановки графики.
+// Супер удобно можно настроить размер и число нужных комнат.
 public class PlanGenerator 
 {
+    // Пределы карты матрица 9 на 8.
     private static (int, int) mapSize = (9, 8);
+
+    // С этой комнаты начинается генерация.
     private static (int, int) startRoomCoord = (3, 4);
 
     // Последовательность координат важна для генерации.
     private static List<(int, int)> surround = new List<(int, int)> { (-1, 0), (0, -1), (1, 0),(0, 1) };
     public PlanRoom[,] plan = new PlanRoom[mapSize.Item1, mapSize.Item2];
     public int Level = 1;
+
+    // колличество комнат в генерации.
     private int RoomsNumber;
     private Random rnd;
 
@@ -24,10 +33,18 @@ public class PlanGenerator
         mapSize.Item2 = ySize;
         startRoomCoord.Item1 = xStart;
         startRoomCoord.Item2 = yStart;
-        RoomsNumber = (int)(rnd.Next(2) + 5 + Level * 2.6);
+
+        
+        
     }
+
+    // Шлавный метод генерации.
     public bool GeneratePlan()
     {
+        // На первом эта же 7-8 комнат.
+        RoomsNumber = (int)(rnd.Next(2) + 4 + Level * 2.6);
+
+        // Генерация этажа начинается со стартовой комнаты.
         plan = new PlanRoom[mapSize.Item1, mapSize.Item2];
         PlanRoom startPlanRoom = new PlanRoom(startRoomCoord.Item1, startRoomCoord.Item2);
         startPlanRoom.state = RoomStates.Start;
@@ -36,10 +53,13 @@ public class PlanGenerator
         planQueue.Enqueue(startPlanRoom);
 
         int currentRoomCounter = 0;
+        PlanRoom.DeadEndRooms = new List<PlanRoom>();
         while (planQueue.Count != 0)
         {
             PlanRoom next = planQueue.Dequeue();
             int sidesCounter = 1;
+
+            // Обходим 4 стороны комнаты.
             for (int i = 0; i < 4; i++)
             {
                 // Проверка на выход из границ массива.
@@ -85,26 +105,35 @@ public class PlanGenerator
                 PlanRoom.DeadEndRooms.Add(next);
             }
         }
+        if (PlanRoom.DeadEndRooms.Count < 3)
+        {
+            return false;
+        }
+        int randomIdx;
 
+        // В общем случае комната с боссом будет самым дальним тупиком от старта.
         if (PlanRoom.DeadEndRooms[PlanRoom.DeadEndRooms.Count - 1].state == RoomStates.Usual)
         {
             PlanRoom.DeadEndRooms[PlanRoom.DeadEndRooms.Count - 1].state = RoomStates.Boss;
         }
         else
         {
-            int randomIdx;
             do
             {
                 randomIdx = rnd.Next(PlanRoom.DeadEndRooms.Count - 1);
-                if (PlanRoom.DeadEndRooms.Count < 3)
-                {
-                    return false;
-                }
             } while (PlanRoom.DeadEndRooms[randomIdx].state != RoomStates.Usual);
 
             PlanRoom.DeadEndRooms[randomIdx].state = RoomStates.Boss;
         }
+        do
+        {
+            randomIdx = rnd.Next(PlanRoom.DeadEndRooms.Count - 1);
 
+        } while (PlanRoom.DeadEndRooms[randomIdx].state != RoomStates.Usual);
+
+        PlanRoom.DeadEndRooms[randomIdx].state = RoomStates.Gold;
+
+        // Вокруг стартовой комнаты не может сразу быть босса.
         for (int i = 0; i < 4; i++)
         {
             if (plan[startRoomCoord.Item1 + surround[i].Item1, startRoomCoord.Item2 + surround[i].Item2] != null &&
@@ -113,12 +142,16 @@ public class PlanGenerator
                 return false;
             }
         }
+
+        // Если не получилось нужное число комнат, начинаем сначала.
         if (currentRoomCounter != RoomsNumber)
         {
             return false;
         }
         return true;
     }
+
+    // Проверка графа комнат на тунелеобразность.
     private bool CheckTunnel(PlanRoom next, int surrIdx)
     {
         int roomCounter = 0;
@@ -141,6 +174,7 @@ public class PlanGenerator
         return false;
     }
     
+    // Расставляет флаги в комнтах.
     public void SetupTags()
     {
         for (int i = 0; i < plan.GetLength(0); i++)
@@ -160,8 +194,13 @@ public class PlanGenerator
                         || j + surround[k].Item2 >= mapSize.Item2)
                     {
                         continue;
-
                     }
+
+                    // Ставит метки входов
+                    // L - слева есть комната 
+                    // U - сверху
+                    // R - справа
+                    // D - снизу
                     if(plan[i + surround[k].Item1,j + surround[k].Item2] != null)
                     {
                         switch (k)
@@ -180,7 +219,6 @@ public class PlanGenerator
                                 break;
                         }
                     }
-                    
                 }
             }
         }

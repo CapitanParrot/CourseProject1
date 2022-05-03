@@ -154,12 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIexTk1TcYgIAABkFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMuS2jAQ/BVK55CyWZ65JYZlc2ChlqT24ouwx1iFLLn04Fn8e0ayjb3khOjpmelpjXwjTOgSEiPVUrF0JVMgP3rEncm3Xht8gzPdS7FlV2g4nyw1uSNRz/mghknEQ5emZQFGseSn2HNHDhC0gmVSFYt0D5HURiOcUa4BQ0oaly0QuvXIGX/6M5dywdNg4k5XPM2C3h2PCQgDqqWGQUPtj8KaWjGtSDgtSkid7E7CYFwnhOHAEwWOVHOC7yPXQ3LOdK2ImEvpJ45oqS3Og4SUUZzQy3A9c2D73Di13eR1lmkw9fiKXuZMoVFVVfJLVu4VVB8qbUfKreszHnpRVc3Vf+F+6MOZksVb07bywOQsOXzQS0K16bjbhedfdVtxovxAdxw+cxDvcqmkFSkGjbIu1WoYzNu/j8miHJJDi1dSn0BbtpY3N9RcpZvh7oc/R5wVO2/8sAK2XHq7/QaAwqv5jYL9fui6BKJOxV8Nf+i+u0h14JUpbTBUTymcvJ20ylHJwnvmprEmkkqAh2vRJQjKzWWDZczzDT7FOm2fIq/UPZm6eR1rXsJTiodbfhA8hTby9LgsncvTCnS+toYzAa1oF3hHnyIpRLVgXU+atK1VGU06aXvL0q+rRSbJdBLOgvFgAtMZHQ/74UvwEg6mYTbaDYMpBeJ3jwmck/JNJbS2B29NtMUF7lnzJektFS39sqeKnpbsWsiO5UxkcpsoALGuKjyEg8Im+CzTRcrQoC0Yw4S/b3KLCZfJAdL4USj2ky7ORtG4rRKTkh2lcUhMIv/piImDH7u8UXBkcHLNm2J3cv8HUEsDBBQAAAgIAAAYIezGVWpWbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSebKFuaGlgZmReaqFZaKZia6hsYGxoZGFYZppkomBRWKqUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAYIexTk1TcYgIAABkFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIezGVWpWbQAAAHgAAAAJACQAAAAAAAAAAAAAAK8CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZwMAAAAA
+    dataString: UEsDBBQAAAgIAAAYIeyWrraQYgIAABoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMuS2jAQ/BVK55CyWZ65JYZlc2ChlqT24ouwx1iFLLn04Fn8e0ayjb3khOjpmelpjXwjTOgSEiPVUrF0JVMgP3rEncm3Xht8gzPdS7FlV2g4nyw1uSNRz/mghknEQ5emZQFGseSn2HNHDhC0gmVSFYt0D5HURiOcUa4BQ0oaly0QuvXIGX/6M5dywdNg4k5XPM2C3h2PCQgDqqWGQUPtj8KaWjGtSDgtSkid7E7CYFwnhOHAEwWOVHOC7yPXQ3LOdK2ImEvpJ45oqS3Og4SUUZzQy3A9c2D73Di13eR1lmkw9fiKXuZMoVFVVfJLVu4VVB8qbUfKresTzipVVdHVf/F+6MOZksVb07cyweQsOXzQS0K16djbhedfhVtxovxAdxw+cxDvcqmkFSkGjbIu1WoYzNu/j9GiHJJDi1dSn0Bbtp43V9TcpZvh7qc/R5wVO+/8sAK2XHq//QqAwrv5jYL9gui6BKJOxV8Nf+i+u0l14JUpbTBUTymcvJ20ylHJwnvmprEmkkqAh2vRJQjKzWWDZczzFT7FOm2fIq/UvZm6eR1rnsJTiodbfhA8hTby9LgsncvTCnS+toYzAa1oF3hHnyIpRLVhXU+atK1VGU06aXvL0q+rRSbJdBLOgvFgAtMZHQ/74UvwEg6mYTbaDYMpBeJ3jwmck/JNJbS2B29NtMUF7lnzKektFS39tqeKnpbsWsiO5UxkcpsoALGuKjyEg8Im+C7TRcrQoC0Yw4S/b3KLCZfJAdL4USj2ky7ORtG4rRKTkh2lcUhMIv/tiImDH7u8UXBkcHLNm2J3cv8HUEsDBBQAAAgIAAAYIezGVWpWbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSebKFuaGlgZmReaqFZaKZia6hsYGxoZGFYZppkomBRWKqUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAYIeyWrraQYgIAABoFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIezGVWpWbQAAAHgAAAAJACQAAAAAAAAAAAAAAK8CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZwMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
     cacheStartup: 0
-  showNavGraphs: 1
+  showNavGraphs: 0
   showUnwalkableNodes: 1
   debugMode: 0
   debugFloor: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
@@ -315,11 +315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2847045666120105344, guid: 8cc425ae56400264db32d996bcc91ba1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.219
+      value: -1.421
       objectReference: {fileID: 0}
     - target: {fileID: 2847045666120105344, guid: 8cc425ae56400264db32d996bcc91ba1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.348
+      value: -0.159
       objectReference: {fileID: 0}
     - target: {fileID: 2847045666120105344, guid: 8cc425ae56400264db32d996bcc91ba1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -890,6 +890,14 @@ MonoBehaviour:
   HollowHeart: {fileID: 375306667927870856, guid: 89d1377fe1fec3444b8869ac617c0181, type: 3}
   BossHealthBar: {fileID: 159781796}
   bossNameText: {fileID: 814801059}
+  PauseMenuUI: {fileID: 0}
+  InsertMenu: {fileID: 0}
+  InsertMenuText: {fileID: 0}
+  MainMenuName: Menu
+  InfoPanel: {fileID: 0}
+  InfoArtifactName: {fileID: 0}
+  InfoArtifactDescription: {fileID: 0}
+  InfoDuration: 4
 --- !u!4 &849893791
 Transform:
   m_ObjectHideFlags: 0

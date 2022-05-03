@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// Скрипт для всех мечевидных оружий.
 public class Sword : MonoBehaviour, IWeapon
 {
     public Weapon Parameters;
@@ -13,13 +14,23 @@ public class Sword : MonoBehaviour, IWeapon
     public Animator Animator;
 
     private bool isPlayerClosely = false;
-    // Start is called before the first frame update
+
+    public string SwordName;
+
+    public string SwordDescription;
+
+    public AudioSource AudioSource;
+
+    public AudioClip SwingSound;
+
+    public AudioClip PickupSound;
+
     void Start()
     {
-        
+        AudioManager.Instance.AddSource(AudioSource);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (isPlayerClosely)
@@ -36,14 +47,17 @@ public class Sword : MonoBehaviour, IWeapon
                     }
                 }
 
+
+                // Старое оружие кладем на пол.
                 if (oldWeapon != null)
                 {
-                    oldWeapon.transform.parent = null;
+                    oldWeapon.transform.parent = GameManager.Instance.LevelCreatorInstance.transform;
                     oldWeapon.GetComponent<BoxCollider2D>().enabled = true;
                     oldWeapon.transform.position = transform.position;
                     oldWeapon.transform.localScale = new Vector3(1, 1, 1);
                 }
 
+                // Новое оружие берем в руки.
                 gameObject.transform.parent = PlayerManager.Instance.WeaponRotation.transform;
                 gameObject.SetActive(false);
                 gameObject.transform.localPosition = new Vector3(0, 0.3f,0);
@@ -53,10 +67,14 @@ public class Sword : MonoBehaviour, IWeapon
                 PlayerManager.Instance.ActiveWeapon = this;
                 gameObject.SetActive(true);
                 isPlayerClosely = false;
+                UIManager.Instance.SetArtifactDescription(SwordName, SwordDescription);
+
+                AudioSource.PlayOneShot(PickupSound);
             }
         }
     }
 
+    // Если игрок входит в колайдер появляется иконка над оружием.
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag.Equals("Player"))
@@ -91,19 +109,24 @@ public class Sword : MonoBehaviour, IWeapon
     {
         Animator.SetTrigger("Attack");
 
+        // Задеваем всех врагов, но наносим урон только установленному количеству.
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
         int hitCounter = 0;
         foreach (var enemy in hitEnemies)
         {
             if (hitCounter >= Parameters.EnemiesPerHit) break;
-            enemy.GetComponent<IEnemy>().TakeDamage(Parameters.Damage, transform, Parameters.Knockback);
+            enemy.GetComponent<IEnemy>().TakeDamage(Parameters.Damage + PlayerManager.Instance.BonusDamage, transform,
+                Parameters.Knockback);
+            hitCounter++;
         }
+        AudioSource.PlayOneShot(SwingSound);
     }
     public float GetAttackSpeed()
     {
         return Parameters.AttackSpeed;
     }
 
+    // Рисует кружок для удобства отладки.
     void OnDrawGizmosSelected()
     {
         if(AttackPoint == null) return;

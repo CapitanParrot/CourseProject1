@@ -2,30 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ”правл€ет врагами на этажах и в комнатах.
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public int EnemyInRoomCounter = 0;
-    public List<GameObject> Enemies = new List<GameObject>();
+    // —четчик врагов в комнате, каждый уважающий себ€ враг прибавл€ет 1 когда спавнитс€.
+    private int enemyInRoomCounter = 0;
+    public List<List<GameObject>> Enemies = new List<List<GameObject>>();
+
+    public List<GameObject> FirstFloorEnemies;
+    public List<GameObject> SecondFloorEnemies;
+    public List<GameObject> ThirdFloorEnemies;
 
     // Ѕоссов нужно добавл€ть в пор€дке по€влени€ в игре.
     public List<GameObject> Bosses;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    public int GetEnemyCount()
+    {
+        return enemyInRoomCounter;
+    }
     public void AddEnemy()
     {
-        EnemyInRoomCounter++;
+        enemyInRoomCounter++;
     }
 
+    // ≈сли враги в комнате кончились, заканчиваем битву.
     public void SubtractEnemy()
     {
-        EnemyInRoomCounter--;
-        if (EnemyInRoomCounter <= 0)
+        enemyInRoomCounter--;
+        if (enemyInRoomCounter <= 0)
         {
             Room.CurrentRoom.FinishFight();
         }
@@ -34,11 +40,8 @@ public class EnemyManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Enemies.Add(FirstFloorEnemies);
+        Enemies.Add(SecondFloorEnemies);
+        Enemies.Add(ThirdFloorEnemies);
     }
 }

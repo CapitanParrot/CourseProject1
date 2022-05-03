@@ -4,44 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+// Объект спавнер
+// У него в детях должны быть точки, в которых будут спавнится враги.
 public class EnemySpawner : MonoBehaviour
 {
-    //private GameObject gameManager;
-
-    //private GameManager GM;
-    // Start is called before the first frame update
-
-    // Спавнит врагов на точки.
     private static System.Random rnd;
-    public void Spawn()
+
+    // Спавн обычных врагов.
+    public void Spawn(List<GameObject> enemies)
     {
-        var enemies = EnemyManager.Instance.Enemies;
         for (int i = 0; i < transform.childCount; i++)
         {
-            Instantiate(enemies[rnd.Next(enemies.Count)], transform.GetChild(i).transform.position, Quaternion.identity);
+            Instantiate(enemies[rnd.Next(enemies.Count)], transform.GetChild(i).transform.position, Quaternion.identity,
+                GameManager.Instance.LevelCreatorInstance.transform);
         }
     }
 
+    // Спавн босса.
     public void SpawnBoss()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            Instantiate(EnemyManager.Instance.Bosses[GameManager.Instance.LevelCounter - 1], transform.GetChild(i).transform.position, Quaternion.identity);
+            Instantiate(EnemyManager.Instance.Bosses[GameManager.Instance.LevelCounter - 1],
+                transform.GetChild(i).transform.position, Quaternion.identity,
+                GameManager.Instance.LevelCreatorInstance.transform);
         }
     }
-    void Start()
-    {
-        //Instantiate(GameManager.Instance.Enemies[0], transform.position, Quaternion.identity);
-    }
+    
     void Awake()
     {
         rnd = GameManager.Instance.Rnd;
-        //gameManager = GameObject.FindWithTag("GameManager");
-        //GM = gameManager.GetComponent<GameManager>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

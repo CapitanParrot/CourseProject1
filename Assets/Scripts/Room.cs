@@ -16,7 +16,7 @@ public class Room : MonoBehaviour
 
     public bool isBossRoom = false;
 
-    //private bool oneInstFlag = true;
+    //  огда игрок задевает тригер возле входа в еще не пройденной комнате, она закрываетс€ и начинаетс€ бой.
     void OnTriggerEnter2D(Collider2D other)
     {
         CurrentRoom = this;
@@ -24,7 +24,8 @@ public class Room : MonoBehaviour
         {
             if (!isBossRoom)
             {
-                ((EnemySpawner) Decor.GetComponentInChildren(typeof(EnemySpawner))).Spawn();
+                ((EnemySpawner) Decor.GetComponentInChildren(typeof(EnemySpawner))).Spawn(
+                    EnemyManager.Instance.Enemies[GameManager.Instance.LevelCounter - 1]);
             }
             else
             {
@@ -33,8 +34,9 @@ public class Room : MonoBehaviour
             IsFightRunning = true;
             LockRoom();
         }
-
     }
+
+    // «аканчивает бой.
     public void FinishFight()
     {
         IsFightRunning = false;
@@ -42,9 +44,18 @@ public class Room : MonoBehaviour
         UnlockRoom();
         if (isBossRoom)
         {
-            GameManager.Instance.Exit.gameObject.SetActive(true);
+            if (GameManager.Instance.LevelCounter < GameManager.Instance.EndLevel)
+            {
+                GameManager.Instance.Exit.gameObject.SetActive(true);
+            }
+            else
+            {
+                LockRoom();
+            }
         }
     }
+
+
     private void LockRoom()
     {
         for (int i = 0; i < transform.parent.childCount; i++)

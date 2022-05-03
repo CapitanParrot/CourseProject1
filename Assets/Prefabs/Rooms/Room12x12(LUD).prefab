@@ -1184,7 +1184,6 @@ GameObject:
   - component: {fileID: 8818313855740727168}
   - component: {fileID: 5065175316405627529}
   - component: {fileID: 8542020957752154659}
-  - component: {fileID: 3090508523765443118}
   - component: {fileID: 40587918630499265}
   m_Layer: 0
   m_Name: Ground
@@ -2897,19 +2896,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &3090508523765443118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612515779654930619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0970b9d79bee8c4c950dae746f32503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walls: {fileID: 9071931460030253383, guid: 7f16311bcdfa20d4e98658da64d6db53, type: 3}
 --- !u!114 &40587918630499265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2927,6 +2913,7 @@ MonoBehaviour:
   walls: {fileID: 0}
   IsFightRunning: 0
   InstanceWalls: {fileID: 0}
+  isBossRoom: 0
 --- !u!1 &7999680259383639700
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,21 +12,26 @@ public class PlayerManager : MonoBehaviour
     
     public int CurrentHealth = 3;
     public int MaxHealth = 3;
+    public int BonusDamage = 0;
+    public float MaxSpeed = 7f;
+    public float BonusAttackSpeed = 0f;
+    public float MaxAttackSpeed = 2f;
+    public int InvincibilityTime = 1;
+    private bool isPlayerInvincible = false;
+
     public Rigidbody2D RB;
 
     public GameObject WeaponRotation;
+
+    public AudioClip TakeDamageSound;
+    public AudioClip HealSound;
+    public AudioSource AudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    if (transform.GetChild(i).tag.Equals("Rotation"))
-        //    {
-        //        WeaponRotation = transform.GetChild(i).gameObject;
-        //    }
-        //}
         UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
+        AudioManager.Instance.AddSource(AudioSource);
     }
     void Awake()
     {
@@ -35,13 +40,26 @@ public class PlayerManager : MonoBehaviour
     }
     public void TakeDamage(int dmg)
     {
-        Animator.SetTrigger("Hit");
-        CurrentHealth -= dmg;
-        UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
-        if (CurrentHealth <= 0)
+        if (!isPlayerInvincible)
         {
-            Death();
+            Animator.SetTrigger("Hit");
+            CurrentHealth -= dmg;
+            UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
+            AudioSource.PlayOneShot(TakeDamageSound);
+            if (CurrentHealth <= 0)
+            {
+                Death();
+            }
+
+            StartCoroutine(Invincible(InvincibilityTime));
         }
+    }
+
+    IEnumerator Invincible(int time)
+    {
+        isPlayerInvincible = true;
+        yield return new WaitForSeconds(time);
+        isPlayerInvincible = false;
     }
 
     public void AddMaxHealth(int amount)
@@ -50,8 +68,40 @@ public class PlayerManager : MonoBehaviour
         UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
     }
 
+    public void AddBonusDamage(int amount)
+    {
+        BonusDamage += amount;
+    }
+
+    public void AddSpeed(float amount)
+    {
+        var pm = gameObject.GetComponent<PlayerMovement>();
+        if (pm.Speed + amount > MaxSpeed)
+        {
+            pm.Speed = MaxSpeed;
+        }
+        else
+        {
+            pm.Speed += amount;
+        }
+        
+    }
+
+    public void AddAttackSpeed(float amount)
+    {
+        if (BonusAttackSpeed + amount > MaxAttackSpeed)
+        {
+            BonusAttackSpeed = MaxAttackSpeed;
+        }
+        else
+        {
+            BonusAttackSpeed += amount;
+        }
+    }
+
     public void Heal(int amount)
     {
+        AudioSource.PlayOneShot(HealSound);
         if (CurrentHealth + amount >= MaxHealth)
         {
             CurrentHealth = MaxHealth;
@@ -66,6 +116,8 @@ public class PlayerManager : MonoBehaviour
 
     public void Death()
     {
+        GameManager.Instance.DeathCounter++;
+        UIManager.Instance.ShowDeathScreen();
         print("Player dead");
     }
     private void OnTriggerEnter2D(Collider2D collision)

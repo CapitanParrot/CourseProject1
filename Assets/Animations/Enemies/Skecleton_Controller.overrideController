@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skecleton_Controller
+  m_Controller: {fileID: 9100000, guid: 9f9185abdbe1ddd49ad02bf93201d999, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 79db9592e1f5b8140b64de928a31cf5a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ab54d4d8e17132b4ba85f4f1f15d9113, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 80a6e7c510f288641adeb92d44956331, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88def355775c9bf4b803e7e36409988c, type: 2}

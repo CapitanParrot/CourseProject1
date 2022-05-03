@@ -23,15 +23,20 @@ public class LevelCreator : MonoBehaviour
 
     public Grid Exit;
 
-    // Start is called before the first frame update
+    public Grid GoldRoomDecor;
+
+
     void Start()
     {
-        PlanGenerator PG = new PlanGenerator(Level, xSize, ySize, xStart, yStart,GameManager.Instance.Rnd);
+        // Генерируем план.
+        PlanGenerator PG = new PlanGenerator(Level, xSize, ySize, xStart, yStart, GameManager.Instance.Rnd);
         int a = 0;
         while (!PG.GeneratePlan())
         {
             a++;
         }
+
+        // По тегам расставляем комнаты.
         PG.SetupTags();
         for (int i = 0; i < PG.plan.GetLength(0); i++)
         {
@@ -39,11 +44,11 @@ public class LevelCreator : MonoBehaviour
             {
                 if (PG.plan[i, j] != null)
                 {
-                    GameObject currentRoom = Instantiate(FindRoom(PG.plan[i, j].Tag), new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity, transform);
+                    GameObject currentRoom = Instantiate(FindRoom(PG.plan[i, j].Tag),
+                        new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity, transform);
                     Room room = null;
                     for (int k = 0; k < currentRoom.transform.childCount; k++)
                     {
-
                         if (currentRoom.transform.GetChild(k).tag.Equals("Ground"))
                         {
                             room = currentRoom.transform.GetChild(k).GetComponent<Room>();
@@ -51,16 +56,20 @@ public class LevelCreator : MonoBehaviour
                     }
                     if (PG.plan[i, j].state == RoomStates.Start)
                     {
+                        // Стартовая комната не боевая.
                         if(room != null)
                         {
                             room.Decor = Instantiate(StartRoomDecor, new Vector3(RoomSize * i, -RoomSize * j),
                                 Quaternion.identity, transform);
                             room.IsClear = true;
                         }
-                        Instantiate(SpawnPoint, new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity, transform);
+
+                        Instantiate(SpawnPoint, new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity,
+                            transform);
                     }
                     else if (PG.plan[i, j].state == RoomStates.Boss)
                     {
+                        // В комнате босса должен быть выход
                         if (room != null)
                         {
                             room.isBossRoom = true;
@@ -70,36 +79,31 @@ public class LevelCreator : MonoBehaviour
                         GameManager.Instance.Exit = Instantiate(Exit, new Vector3(RoomSize * i, -RoomSize * j),
                             Quaternion.identity, transform);
                         GameManager.Instance.Exit.gameObject.SetActive(false);
+                    }else if(PG.plan[i, j].state == RoomStates.Gold)
+                    {
+                        if (room != null)
+                        {
+                            room.IsClear = true;
+                            print("Golden spawned");
+                            room.Decor = Instantiate(GoldRoomDecor, new Vector3(RoomSize * i, -RoomSize * j),
+                                Quaternion.identity, transform);
+                        }
                     }
                     else
                     {
-                        //Room room = null;
-                        //for (int k = 0; k < currentRoom.transform.childCount; k++)
-                        //{
-                            
-                        //    if (currentRoom.transform.GetChild(k).tag.Equals("Ground"))
-                        //    {
-                        //        room = currentRoom.transform.GetChild(k).GetComponent<Room>();
-                        //    }
-                        //}
                         if(room != null)
                         {
                             print("Decor spawned");
-                            room.Decor = Instantiate(RoomDecors[0], new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity, transform);
+                            room.Decor = Instantiate(RoomDecors[GameManager.Instance.Rnd.Next(RoomDecors.Count)],
+                                new Vector3(RoomSize * i, -RoomSize * j), Quaternion.identity, transform);
                         }
-                        
                     }
                 }
             }
         }
-        //Instantiate(PlanRoom, new Vector3(14f, 0), Quaternion.identity, transform);
     }
 
-    void Awake()
-    {
-        
-    }
-
+    // Ищет нужную комнату по тегу.
     GameObject FindRoom(string tag)
     {
         foreach (var room in Rooms)
@@ -111,10 +115,5 @@ public class LevelCreator : MonoBehaviour
         }
 
         return new GameObject();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

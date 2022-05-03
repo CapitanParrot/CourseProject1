@@ -15,6 +15,6 @@ MonoBehaviour:
   Health: 3
   Damage: 1
   DropObjects:
-  - {fileID: 130107673313682831, guid: 50227efcfd3832843a78f39090e1a499, type: 3}
+  - {fileID: 2338094327848722878, guid: fba599e149c724e4ca88286093a4cefc, type: 3}
   DropChance: 20
   Speed: 25

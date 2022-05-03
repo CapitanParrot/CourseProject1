@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BossDemon
   m_EditorClassIdentifier: 
   Health: 10
-  Damage: 2
+  Damage: 1
   DropObjects:
   - {fileID: 130107673313682831, guid: 50227efcfd3832843a78f39090e1a499, type: 3}
   DropChance: 100

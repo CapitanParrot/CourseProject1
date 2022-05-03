@@ -2,30 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Artifact : MonoBehaviour
 {
+    // Название метода, который должен вызывать артефакт.
     public string MethodName;
 
     private bool isPlayerClosely = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPlayerClosely)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                ArtifactManager.Instance.PlaySound();
                 Invoke(MethodName, 0);
                 Destroy(gameObject);
             }
         }
     }
 
+    // Когда Игрок подходит в зону колайдера, над предметом появляется иконка.
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag.Equals("Player"))
@@ -41,6 +38,7 @@ public class Artifact : MonoBehaviour
         }
     }
 
+    // А когда уходит, иконка пропадает.
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag.Equals("Player"))
@@ -56,21 +54,38 @@ public class Artifact : MonoBehaviour
         }
     }
 
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.tag.Equals("Player"))
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.E))
-    //        {
-    //            Invoke(MethodName,0);
-    //            Destroy(gameObject);
-    //        }
-    //    }
-    //}
-
     void Baton()
     {
         PlayerManager.Instance.AddMaxHealth(2);
         PlayerManager.Instance.Heal(2);
+        UIManager.Instance.SetArtifactDescription("Булка хлеба", "+ максимум здоровья");
+    }
+
+    void Whetstone()
+    {
+        PlayerManager.Instance.AddBonusDamage(1);
+        UIManager.Instance.SetArtifactDescription("Точильный камень", "+ урон");
+    }
+
+    void GoldenSword()
+    {
+        GameManager.Instance.FinishGame();
+    }
+    void Meetballs()
+    {
+        PlayerManager.Instance.AddMaxHealth(4);
+        PlayerManager.Instance.Heal(4);
+        UIManager.Instance.SetArtifactDescription("Тефтели", "++ максимум здоровья");
+    }
+    void Boots()
+    {
+        PlayerManager.Instance.AddSpeed(0.1f);
+        UIManager.Instance.SetArtifactDescription("Удобные ботинки", "+ скорость");
+    }
+
+    void Glove()
+    {
+        PlayerManager.Instance.AddAttackSpeed(0.2f);
+        UIManager.Instance.SetArtifactDescription("Удобная перчатка", "+ скорость атаки");
     }
 }

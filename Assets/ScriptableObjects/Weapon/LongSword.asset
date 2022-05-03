@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fba59af09691148af0a553ac2ccd00, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
-  Damage: 2
+  Damage: 3
   Knockback: 10
   AttackSpeed: 1.8
   Scale: 0
