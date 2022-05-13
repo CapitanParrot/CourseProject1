@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         Destroy(EnemyManager.Instance.gameObject);
         Destroy(PlayerInstance);
         LevelCounter = 0;
+        UIManager.Instance.DeactivateBossHealth();
         Run();
     }
 }

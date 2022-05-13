@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Вращение оружия вслед за мышкой.
         RB2D.MovePosition(RB2D.position + movement * Speed * Time.fixedDeltaTime);
+
         Vector2 lookDir = mousePos - RB2D.position;
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         WeaponRotation.eulerAngles = new Vector3(0,0,angle);

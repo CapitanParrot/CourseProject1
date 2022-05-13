@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Управляет состоянием персонажа игрока.
 public class PlayerManager : MonoBehaviour
 {
     public Animator Animator;
@@ -27,17 +28,19 @@ public class PlayerManager : MonoBehaviour
     public AudioClip HealSound;
     public AudioSource AudioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
         UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
         AudioManager.Instance.AddSource(AudioSource);
     }
+
     void Awake()
     {
         Instance = this;
         ActiveWeapon = GetComponentInChildren<IWeapon>();
     }
+
+    // Здесь игрок получает урон.
     public void TakeDamage(int dmg)
     {
         if (!isPlayerInvincible)
@@ -84,7 +87,6 @@ public class PlayerManager : MonoBehaviour
         {
             pm.Speed += amount;
         }
-        
     }
 
     public void AddAttackSpeed(float amount)
@@ -111,27 +113,19 @@ public class PlayerManager : MonoBehaviour
             CurrentHealth += amount;
         }
         UIManager.Instance.DrawHealth(CurrentHealth, MaxHealth);
-
     }
 
     public void Death()
     {
         GameManager.Instance.DeathCounter++;
         UIManager.Instance.ShowDeathScreen();
-        print("Player dead");
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Exit")
         {
             GameManager.Instance.NextLevel();
         }
-
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }
