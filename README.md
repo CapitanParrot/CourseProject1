@@ -1,1 +1,6 @@
-"# CourseProject1" 
+"# Курсовой проект 2 курса" 
+
+Название: Desire Dungeon
+Автор: CapitanParrot aka Штырев Максим
+Краткое описание: 2D игра в пиксельной стилистике реализованная при помощи движка Unity
+Геймплей: https://youtu.be/IHHytl24OQs
