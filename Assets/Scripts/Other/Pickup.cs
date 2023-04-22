@@ -19,7 +19,7 @@ public class Pickup : MonoBehaviour
     // Маленькая лечилка.
     private void SmallFlask()
     {
-        if (PlayerManager.Instance.CurrentHealth < PlayerManager.Instance.MaxHealth)
+        if (PlayerManager.Instance.currentHealth < PlayerManager.Instance.maxHealth)
         {
             PlayerManager.Instance.Heal(1);
             Destroy(gameObject);
@@ -29,7 +29,7 @@ public class Pickup : MonoBehaviour
     // Большая лечилка.
     private void BigFlask()
     {
-        if (PlayerManager.Instance.CurrentHealth < PlayerManager.Instance.MaxHealth)
+        if (PlayerManager.Instance.currentHealth < PlayerManager.Instance.maxHealth)
         {
             PlayerManager.Instance.Heal(2);
             Destroy(gameObject);

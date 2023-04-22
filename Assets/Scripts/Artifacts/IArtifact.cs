@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-// Интерфейс оружия.
-public interface IWeapon
+public interface IArtifact
 {
+
     string Name { get; }
     string Description { get; }
-    public void Attack();
-    public float GetAttackSpeed();
+    void Action(Managers args);
+
+    void UndoAction(Managers args);
 }

@@ -32,6 +32,18 @@ public class GameManager : MonoBehaviour
     public int DeathCounter = 0;
 
     public int EndLevel = 3;
+
+    // NEW Событие для инициализации
+    public event EventHandler InitEvent;
+
+    // NEW Событие для перезапуска игры
+    public event EventHandler<RestartArgs> RestartEvent;
+
+    // NEW Событие для нового этажа
+    public event EventHandler<int> NextLevelEvent;
+
+    // NEW Событие для финала игры
+    public event EventHandler<int> FinishGameEvent;
     void Start()
     {
         Run();
@@ -52,6 +64,10 @@ public class GameManager : MonoBehaviour
         VirtualCamera.Follow = PlayerInstance.transform;
         Instantiate(EnemyManagerPrefab);
         Instantiate(ArtifactManagerPrefab);
+        
+        // NEW Вызываем событие инициализации
+        InitEvent?.Invoke(this, new EventArgs());
+        PlayerManager.Instance.PlayerDeathEvent += PlayerDeath;
         NextLevel();
     }
 
@@ -66,13 +82,14 @@ public class GameManager : MonoBehaviour
         LevelCreator LC = LevelCreatorPrefab.GetComponent<LevelCreator>();
         LC.Level = LevelCounter;
         LevelCreatorInstance = Instantiate(LevelCreatorPrefab, Vector3.zero, Quaternion.identity);
-        UIManager.Instance.ActivateInsert(LevelCounter);
-
+        //UIManager.Instance.ActivateInsert(LevelCounter);
+        NextLevelEvent?.Invoke(this, LevelCounter);
     }
 
     // Конец игры.
     public void FinishGame()
     {
+        FinishGameEvent?.Invoke(this, DeathCounter);
         UIManager.Instance.ShowEndScreen();
     }
 
@@ -83,7 +100,14 @@ public class GameManager : MonoBehaviour
         Destroy(EnemyManager.Instance.gameObject);
         Destroy(PlayerInstance);
         LevelCounter = 0;
-        UIManager.Instance.DeactivateBossHealth();
+
+        RestartEvent?.Invoke(this, new RestartArgs());
+        //UIManager.Instance.DeactivateBossHealth();
         Run();
+    }
+
+    public void PlayerDeath(object sender, PlayerDeathArgs e)
+    {
+        DeathCounter++;
     }
 }

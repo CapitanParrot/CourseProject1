@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 824489187395237537}
   - component: {fileID: 4976222636580074612}
-  - component: {fileID: 8253870683541025193}
   - component: {fileID: 7847932856259336940}
+  - component: {fileID: 4885875167786925693}
   m_Layer: 0
   m_Name: GoldenSword
   m_TagString: Untagged
@@ -171,19 +171,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8253870683541025193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999089835074523672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3ef4d5447d5e24388c326d5a262776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MethodName: GoldenSword
 --- !u!61 &7847932856259336940
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,3 +197,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.625, y: 1.875}
   m_EdgeRadius: 0
+--- !u!114 &4885875167786925693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999089835074523672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f528a4f6f0fabc44aee1e425469ea79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifactName: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u043C\u0435\u0447"
+  description: "\u0421\u043E\u043A\u0440\u043E\u0432\u0438\u0449\u0435"

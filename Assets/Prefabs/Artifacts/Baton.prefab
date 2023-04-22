@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7920701033543740558}
   - component: {fileID: 211455092501653612}
   - component: {fileID: 8398529171389452719}
-  - component: {fileID: 2510726135416434137}
+  - component: {fileID: 3046698938206411100}
   m_Layer: 0
   m_Name: Baton
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2510726135416434137
+--- !u!114 &3046698938206411100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6219492022619955416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3ef4d5447d5e24388c326d5a262776, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e8e9ae4239f7c54a9afd08bd400ba23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MethodName: Baton
+  artifactName: "\u0411\u0443\u043B\u043A\u0430 \u0445\u043B\u0435\u0431\u0430"
+  description: "+ \u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
 --- !u!1 &8684934183913247714
 GameObject:
   m_ObjectHideFlags: 0

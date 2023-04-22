@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// DEPRICATED, заменен на интерфейс и отдельные классы
 public class Artifact : MonoBehaviour
 {
     // Название метода, который должен вызывать артефакт.
@@ -17,7 +19,9 @@ public class Artifact : MonoBehaviour
             {
                 ArtifactManager.Instance.PlaySound();
                 Invoke(MethodName, 0);
-                Destroy(gameObject);
+                transform.SetParent(ArtifactManager.Instance.transform, false);
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
             }
         }
     }
@@ -71,12 +75,15 @@ public class Artifact : MonoBehaviour
     {
         GameManager.Instance.FinishGame();
     }
+
     void Meetballs()
     {
         PlayerManager.Instance.AddMaxHealth(4);
         PlayerManager.Instance.Heal(4);
-        UIManager.Instance.SetArtifactDescription("Тефтели", "++ максимум здоровья");
+        PlayerManager.Instance.SubSpeed(1);
+        UIManager.Instance.SetArtifactDescription("Тефтели", "++ максимум здоровья\n-- скорость");
     }
+
     void Boots()
     {
         PlayerManager.Instance.AddSpeed(0.1f);

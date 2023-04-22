@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3950918393801080430}
   - component: {fileID: 3864719746549001830}
   - component: {fileID: 3811768952240760278}
-  - component: {fileID: 4060851993610652844}
+  - component: {fileID: -476904439469630351}
   m_Layer: 0
   m_Name: Boots
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4060851993610652844
+--- !u!114 &-476904439469630351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5425480045590623661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3ef4d5447d5e24388c326d5a262776, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a536293059c0c4e822b6eadef8261e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MethodName: Boots
+  artifactName: "\u0423\u0434\u043E\u0431\u043D\u044B\u0435 \u0431\u043E\u0442\u0438\u043D\u043A\u0438"
+  description: "+ \u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
 --- !u!1 &8072375614167523289
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,15 +15,19 @@ public class Sword : MonoBehaviour, IWeapon
 
     private bool isPlayerClosely = false;
 
-    public string SwordName;
+    public string swordName;
 
-    public string SwordDescription;
+    public string swordDescription;
 
     public AudioSource AudioSource;
 
     public AudioClip SwingSound;
 
     public AudioClip PickupSound;
+
+    public string Name => swordName;
+
+    public string Description => swordDescription;
 
     void Start()
     {
@@ -67,7 +71,9 @@ public class Sword : MonoBehaviour, IWeapon
                 PlayerManager.Instance.ActiveWeapon = this;
                 gameObject.SetActive(true);
                 isPlayerClosely = false;
-                UIManager.Instance.SetArtifactDescription(SwordName, SwordDescription);
+
+                ArtifactManager.Instance.PlayWeapon(gameObject);
+                //UIManager.Instance.SetArtifactDescription(swordName, swordDescription);
 
                 AudioSource.PlayOneShot(PickupSound);
             }

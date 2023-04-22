@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5963788902623130555}
   - component: {fileID: 5963788902623130552}
   - component: {fileID: 5963788902623130553}
-  - component: {fileID: 5963788902623130550}
+  - component: {fileID: -6037088786780422017}
   m_Layer: 0
   m_Name: Glove
   m_TagString: Untagged
@@ -197,7 +197,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.92526877, y: 0.9377241}
   m_EdgeRadius: 0
---- !u!114 &5963788902623130550
+--- !u!114 &-6037088786780422017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,7 +206,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5963788902623130551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3ef4d5447d5e24388c326d5a262776, type: 3}
+  m_Script: {fileID: 11500000, guid: 643fa0f3aac45704ab6654d36ac37b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MethodName: Glove
+  artifactName: "\u041F\u0435\u0440\u0447\u0430\u0442\u043A\u0430"
+  description: "+ \u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0430\u0442\u0430\u043A\u0438"

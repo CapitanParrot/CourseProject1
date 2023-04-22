@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 // Мать всей игры, весь интерфейс держится на ней.
 public class UIManager : MonoBehaviour
@@ -52,15 +53,38 @@ public class UIManager : MonoBehaviour
 
     public Vector2 HotSpotCursor;
 
-
+    // NEW Событиями активно пользуется этот класс
     void Start()
     {
         Cursor.SetCursor(CursorTexture, HotSpotCursor, CursorMode.Auto);
+        GameManager.Instance.InitEvent += Init;
+        GameManager.Instance.RestartEvent += RestartUI;
+        GameManager.Instance.NextLevelEvent += ActivateInsert;
+        GameManager.Instance.FinishGameEvent += ShowEndScreen;
     }
 
     void Awake()
     {
         Instance = this;
+        
+    }
+
+    public void DeathUI(object sender, PlayerDeathArgs e)
+    {
+        ShowDeathScreen();
+    }
+
+    public void RestartUI(object sender, RestartArgs args)
+    {
+        DeactivateBossHealth();
+    }
+
+    public void Init(object sender, EventArgs args)
+    {
+        PlayerManager.Instance.InitPlayer += DrawHealth;
+        PlayerManager.Instance.ChangeHealth += DrawHealth;
+        PlayerManager.Instance.PlayerDeathEvent += DeathUI;
+        ArtifactManager.Instance.PickArtifact += SetArtifactDescription;
     }
 
     // Управляет интерфейсом полоски здоровья босса.
@@ -91,10 +115,62 @@ public class UIManager : MonoBehaviour
             Destroy(HealthPanel.transform.GetChild(i).gameObject);
         }
 
-        // Каждый раз при изменении здоровья рисуем его заного.
+        // Каждый раз при изменении здоровья рисуем его заново.
         int fullHeartsCount = currentHealth / 2;
         int halfHeartsCount = currentHealth % 2;
         int hollowHeartsCount = (maxHealth - currentHealth) / 2;
+
+        for (int i = 0; i < fullHeartsCount; i++)
+        {
+            Instantiate(FullHeart, HealthPanel.transform);
+        }
+        for (int i = 0; i < halfHeartsCount; i++)
+        {
+            Instantiate(HalfHeart, HealthPanel.transform);
+        }
+        for (int i = 0; i < hollowHeartsCount; i++)
+        {
+            Instantiate(HollowHeart, HealthPanel.transform);
+        }
+    }
+
+    public void DrawHealth(object sender, InitPlayerArgs args)
+    {
+        for (int i = 0; i < HealthPanel.transform.childCount; i++)
+        {
+            Destroy(HealthPanel.transform.GetChild(i).gameObject);
+        }
+
+        // Каждый раз при изменении здоровья рисуем его заново.
+        int fullHeartsCount = args.CurrentHealth / 2;
+        int halfHeartsCount = args.CurrentHealth % 2;
+        int hollowHeartsCount = (args.MaxHealth - args.CurrentHealth) / 2;
+
+        for (int i = 0; i < fullHeartsCount; i++)
+        {
+            Instantiate(FullHeart, HealthPanel.transform);
+        }
+        for (int i = 0; i < halfHeartsCount; i++)
+        {
+            Instantiate(HalfHeart, HealthPanel.transform);
+        }
+        for (int i = 0; i < hollowHeartsCount; i++)
+        {
+            Instantiate(HollowHeart, HealthPanel.transform);
+        }
+    }
+
+    public void DrawHealth(object sender, PlayerHealthArgs args)
+    {
+        for (int i = 0; i < HealthPanel.transform.childCount; i++)
+        {
+            Destroy(HealthPanel.transform.GetChild(i).gameObject);
+        }
+
+        // Каждый раз при изменении здоровья рисуем его заново.
+        int fullHeartsCount = args.CurrentHealth / 2;
+        int halfHeartsCount = args.CurrentHealth % 2;
+        int hollowHeartsCount = (args.MaxHealth - args.CurrentHealth) / 2;
 
         for (int i = 0; i < fullHeartsCount; i++)
         {
@@ -138,7 +214,15 @@ public class UIManager : MonoBehaviour
         isGameActive = false;
         InsertMenu.SetActive(true);
         InsertMenuText.text = "ЭТАЖ " + level;
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0f;
+    }
+
+    public void ActivateInsert(object sender, int level)
+    {
+        isGameActive = false;
+        InsertMenu.SetActive(true);
+        InsertMenuText.text = "ЭТАЖ " + level;
+        Time.timeScale = 0f;
     }
 
     // Выключает перебивку и показывает историю.
@@ -163,16 +247,40 @@ public class UIManager : MonoBehaviour
         StartCoroutine(InfoOff(InfoDuration));
     }
 
+    public void SetArtifactDescription(object sender, ArtifactArgs args)
+    {
+        InfoPanel.SetActive(true);
+        InfoArtifactDescription.text = args.ArtifactDescription;
+        InfoArtifactName.text = args.ArtifactName;
+        StartCoroutine(InfoOff(InfoDuration));
+    }
+
+
     IEnumerator InfoOff(int time)
     {
         yield return new WaitForSeconds(time);
         InfoPanel.SetActive(false);
     }
 
+    private void DeactivatePopUpPanels()
+    {
+        InfoPanel.SetActive(false);
+        Story.SetActive(false);
+    }
+
     public void ShowEndScreen()
     {
         isGameActive = false;
         EndScreen.SetActive(true);
+        DeactivatePopUpPanels();
+        Time.timeScale = 0f;
+    }
+
+    public void ShowEndScreen(object sender, int DeathCount)
+    {
+        isGameActive = false;
+        EndScreen.SetActive(true);
+        DeactivatePopUpPanels();
         Time.timeScale = 0f;
     }
 
@@ -180,6 +288,7 @@ public class UIManager : MonoBehaviour
     {
         isGameActive = false;
         DeathScreen.SetActive(true);
+        DeactivatePopUpPanels();
         Time.timeScale = 0f;
     }
 

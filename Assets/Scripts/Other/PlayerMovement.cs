@@ -25,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
+    private PlayerManager playerManager;
 
     void Start()
     {
-        WeaponRotation = PlayerManager.Instance.WeaponRotation.transform;
+        playerManager = GetComponent<PlayerManager>();
+        WeaponRotation = playerManager.WeaponRotation.transform;
         RB2D = GetComponent<Rigidbody2D>();
     }
 
@@ -36,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
-        PlayerManager.Instance.Animator.SetFloat("Speed",Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
+
+        playerManager.Animator.SetFloat("Speed",Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -46,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                PlayerManager.Instance.ActiveWeapon.Attack();
-                nextAttackTime = Time.time + 1f / (PlayerManager.Instance.ActiveWeapon.GetAttackSpeed() + PlayerManager.Instance.BonusAttackSpeed);
+                playerManager.ActiveWeapon.Attack();
+                nextAttackTime = Time.time + 1f / (playerManager.ActiveWeapon.GetAttackSpeed() + playerManager.BonusAttackSpeed);
             }
         }
     }

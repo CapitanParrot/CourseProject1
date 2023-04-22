@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,12 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        GameManager.Instance.InitEvent += Init;
+    }
+
+    public void Init(object sender, EventArgs args)
+    {
+        PlayerManager.Instance.InitPlayer += AddSource;
     }
 
     void Awake()
@@ -35,6 +42,7 @@ public class AudioManager : MonoBehaviour
 
         LoadSettings();
         ChangeVolume(SoundValue);
+        
     }
 
     public void AddSource(AudioSource source)
@@ -42,6 +50,13 @@ public class AudioManager : MonoBehaviour
         source.volume = SoundValue;
         Sources.Add(source);
     }
+
+    public void AddSource(object sender,InitPlayerArgs args)
+    {
+        args.AudioSource.volume = SoundValue;
+        Sources.Add(args.AudioSource);
+    }
+
 
     // Используется в настройках на кнопке принять.
     public void ChangeVolume(Slider newVolume)

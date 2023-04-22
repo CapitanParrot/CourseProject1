@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1115394057129462582}
   - component: {fileID: 7064106632461792861}
   - component: {fileID: 5267775078706202280}
-  - component: {fileID: 1559225923716438016}
+  - component: {fileID: -6262950852423111572}
   m_Layer: 0
   m_Name: Meetballs
   m_TagString: Untagged
@@ -197,7 +197,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1559225923716438016
+--- !u!114 &-6262950852423111572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,7 +206,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3435778603104446755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3ef4d5447d5e24388c326d5a262776, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e1e5f412ead61241943c2fe40297717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MethodName: Meetballs
+  artifactName: "\u0422\u0435\u0444\u0442\u0435\u043B\u0438"
+  description: "++ \u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435'\\n'-- \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C"

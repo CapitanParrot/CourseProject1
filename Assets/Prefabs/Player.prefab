@@ -158,7 +158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 6
   cam: {fileID: 0}
-  WeaponPoint: {fileID: 7233955579984603222}
   Radius: 0.5
   angle: 0
 --- !u!61 &5989594074155021443
@@ -200,10 +199,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 4656242355036677942}
-  CurrentHealth: 6
-  MaxHealth: 6
+  currentHealth: 3
+  maxHealth: 4
   BonusDamage: 0
   MaxSpeed: 7
+  MinSpeed: 3
   BonusAttackSpeed: 0
   MaxAttackSpeed: 2
   InvincibilityTime: 1
